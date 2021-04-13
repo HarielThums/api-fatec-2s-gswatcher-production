@@ -4,6 +4,9 @@ class DataService {
   getAllDevs() {
     return http.get("/devs");
   }
+  getAllProjs() {
+    return http.get("/projetos");
+  }
 
    get(id) {
      return http.get(`/tutorials/${id}`);

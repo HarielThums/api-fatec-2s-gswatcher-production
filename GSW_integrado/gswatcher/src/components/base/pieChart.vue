@@ -1,6 +1,7 @@
 <template>
-        <div id="chart">
-        <apexchart type="pie" :options="chartOptions" :series="series"></apexchart>
+ <div class="chart-wrapper" id="chart">
+     <apexchart type="pie" :options="chartOptions" :series="series"></apexchart>
+     
       </div>
 </template>
 
@@ -12,13 +13,13 @@ export default {
   name: "lineChart",
   data: () => ({
           
-          series: [25, 15, 44, 55, 41, 17],
+          series: [82.5, 12.5],
           chartOptions: {
             chart: {
               width: '100%',
               type: 'pie',
             },
-            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            labels: ["Complete", "Incomplete"],
             theme: {
               monochrome: {
                 enabled: true
@@ -26,10 +27,9 @@ export default {
             },
             plotOptions: {
               pie: {
-                  customScale: 0.3,
-                  size: 1000,
-                dataLabels: {
-                  offset: -5,
+                  customScale: 1.1,
+                  dataLabels: {
+                      offset: -5,
                 }
               }
             },
@@ -52,3 +52,11 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+div.chart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
