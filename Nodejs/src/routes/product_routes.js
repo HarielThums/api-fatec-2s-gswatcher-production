@@ -18,6 +18,8 @@ const controller = require('../controller/controller');
 
     router.get('/git', controller.listAll_git)
 
+    router.get('/status', controller.listAll_Status)
+
     // router.put('/populating', controller.populating)
 
 module.exports = router
