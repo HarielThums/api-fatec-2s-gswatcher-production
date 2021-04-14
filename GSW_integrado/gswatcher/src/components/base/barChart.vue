@@ -2,9 +2,10 @@
   <div class="barChart">
     <div id="chart" class="chart-wrapper">
       <apexchart
+        class="my-8"
         type="bar"
         height="350"
-        width="350"
+        width="100%"
         :options="chartOptions"
         :series="series"
       ></apexchart>
@@ -97,17 +98,17 @@ export default {
             },
           },
         },
-        title: {
-          text: "Tasks Per Status",
-          floating: true,
-          //   offsetY: 330,
-          offsetY: -5,
-          align: "left",
-          style: {
-            color: "#444",
-            fontSize: "15px",
-          },
-        },
+        //title: {
+        //text: "Tasks Per Status",
+        //floating: true,
+        //   offsetY: 330,
+        //offsetY: -5,
+        //align: "left",
+        //style: {
+        //color: "#444",
+        //fontSize: "15px",
+        //},
+        //},
         colors: ["#304758"],
       },
     };

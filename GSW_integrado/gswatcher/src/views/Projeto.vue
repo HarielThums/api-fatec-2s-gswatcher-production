@@ -1,31 +1,40 @@
 <template>
   <div class="projeto">
-    <h1>Projeto</h1>
+    <h1>Project</h1>
     <h2 class="pa-2 font-weight-light text-uppercase grey--text">
       [Albuquerque Albuquerque and Carvalho Comércio] - Mandatory human-resource
       open architecture
     </h2>
 
     <v-container class="my-5">
+      <h3>Tasks Per Status</h3>
+      <v-divider></v-divider>
       <barChart />
     </v-container>
 
     <v-container class="my-5">
+      <h3>Total Hours Per Period</h3>
+      <v-divider></v-divider>
       <lineChart />
     </v-container>
 
     <v-container class="my-5">
+      <h3>DEVs - Completed Tasks</h3>
+      <v-divider></v-divider>
       <table01 />
     </v-container>
 
     <v-container class="my-5">
+      <h3>DEVs - Incompleted Tasks</h3>
+      <v-divider></v-divider>
       <table02 />
     </v-container>
 
     <v-container class="my-5">
+      <h3>Conclusion Percentage</h3>
+      <v-divider></v-divider>
       <pieChart />
     </v-container>
-    
   </div>
 </template>
 

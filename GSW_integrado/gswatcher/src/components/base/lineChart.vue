@@ -1,6 +1,12 @@
 <template>
   <div class="chart-wrapper">
-    <apexchart width="350" type="line" :options="options" :series="series">
+    <apexchart
+      class="my-8"
+      width="100%"
+      type="line"
+      :options="options"
+      :series="series"
+    >
     </apexchart>
   </div>
 </template>
@@ -17,14 +23,14 @@ export default {
         title: "Nome",
         id: "vuechart-example",
       },
-      title: {
-        text: "Total Hours Per Period",
-        align: "left",
-        style: {
-          color: "#444",
-          fontSize: "15px",
-        },
-      },
+      //title: {
+      //  text: "Total Hours Per Period",
+      //  align: "left",
+      //  style: {
+      //    color: "#444",
+      //    fontSize: "15px",
+      //  },
+      //},
       stroke: {
         curve: "smooth",
       },
