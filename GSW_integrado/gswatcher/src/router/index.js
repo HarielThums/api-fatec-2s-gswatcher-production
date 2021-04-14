@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import About from '../views/About.vue'
 import Perfil from '../views/Perfil.vue'
 import Desenvolvedores from '../views/Desenvolvedores.vue'
 import Upload from '../views/Upload.vue'
@@ -24,6 +25,11 @@ const routes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
+  },
   {
     path: '/perfil',
     name: 'perfil',

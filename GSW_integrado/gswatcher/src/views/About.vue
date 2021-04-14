@@ -1,54 +1,58 @@
 <template>
-        <div id="chart">
-        <apexchart type="pie" :options="chartOptions" :series="series"></apexchart>
-      </div>
+  <div class="projeto">
+    <h1>Projeto</h1>
+    <h2 class="pa-2 font-weight-light text-uppercase grey--text">
+      [Albuquerque Albuquerque and Carvalho Comércio] - Mandatory human-resource
+      open architecture
+    </h2>
+
+    <v-container class="my-5">
+      <barChart />
+    </v-container>
+
+    <v-container class="my-5">
+      <lineChart />
+    </v-container>
+
+    <v-container class="my-5">
+      <table01 />
+    </v-container>
+
+    <v-container class="my-5">
+      <table02 />
+    </v-container>
+
+    <v-container class="my-5">
+      <pieChart />
+    </v-container>
+    
+  </div>
 </template>
 
 <script>
-// category
-// datetime
-// numeric
+// @ is an alias to /src
+
+import barChart from "@/components/base/barChart";
+import lineChart from "@/components/base/lineChart";
+import pieChart from "@/components/base/pieChart";
+import table01 from "@/components/base/tableDevs01";
+import table02 from "@/components/base/tableDevs02";
+
 export default {
-  name: "lineChart",
-  data: () => ({
-          
-          series: [25, 15, 44, 55, 41, 17],
-          chartOptions: {
-            chart: {
-              width: '100%',
-              type: 'pie',
-            },
-            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            theme: {
-              monochrome: {
-                enabled: true
-              }
-            },
-            plotOptions: {
-              pie: {
-                  customScale: 0.3,
-                  size: 1000,
-                dataLabels: {
-                  offset: -5,
-                }
-              }
-            },
-            title: {
-              text: "Monochrome Pie"
-            },
-            dataLabels: {
-              formatter(val, opts) {
-                const name = opts.w.globals.labels[opts.seriesIndex]
-                return [name, val.toFixed(1) + '%']
-              }
-            },
-            legend: {
-              show: false
-            }
-          },
-          
-   
-    
-  }),
+  name: "Projeto",
+  components: {
+    barChart,
+    lineChart,
+    pieChart,
+    table01,
+    table02,
+  },
+  data() {
+    return {};
+  },
 };
 </script>
+
+
+<style>
+</style>
