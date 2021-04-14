@@ -1,6 +1,6 @@
 <template>
   <div class="projeto">
-    <h1>Project:</h1>
+    <h1>Project</h1>
     <h2 class="pa-2 font-weight-light text-uppercase grey--text">
       [Albuquerque Albuquerque and Carvalho Comércio] - Mandatory human-resource
       open architecture
