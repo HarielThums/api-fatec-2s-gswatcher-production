@@ -70,7 +70,13 @@ exports.listAll_git = async (req, res) => {
     res.status(200).send(response.rows);
   };    
 
-
+// buscando todos os status
+exports.listAll_Status = async (req, res) => {
+  const response = await db.query(
+     'SELECT * FROM tbl_status',
+    );
+    res.status(200).send(response.rows);
+  };    
   
 // Buscando quantas tasks tem um project // Rota desnecessaria, dado incluido na rota /projetos
 /*

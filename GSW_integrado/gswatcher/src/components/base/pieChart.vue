@@ -1,8 +1,12 @@
 <template>
- <div class="chart-wrapper" id="chart">
-     <apexchart type="pie" :options="chartOptions" :series="series"></apexchart>
-     
-      </div>
+  <div class="chart-wrapper" id="chart">
+    <apexchart
+      class="my-3"
+      type="pie"
+      :options="chartOptions"
+      :series="series"
+    ></apexchart>
+  </div>
 </template>
 
 <script>
@@ -12,43 +16,57 @@
 export default {
   name: "lineChart",
   data: () => ({
-          
-          series: [82.5, 12.5],
-          chartOptions: {
-            chart: {
-              width: '100%',
-              type: 'pie',
-            },
-            labels: ["Complete", "Incomplete"],
-            theme: {
-              monochrome: {
-                enabled: true
-              }
-            },
-            plotOptions: {
-              pie: {
-                  customScale: 1.1,
-                  dataLabels: {
-                      offset: -5,
-                }
-              }
-            },
-            title: {
-              text: "Monochrome Pie"
-            },
-            dataLabels: {
-              formatter(val, opts) {
-                const name = opts.w.globals.labels[opts.seriesIndex]
-                return [name, val.toFixed(1) + '%']
-              }
-            },
-            legend: {
-              show: false
-            }
+    series: [82.5, 12.5],
+    chartOptions: {
+      chart: {
+        width: "100%",
+        type: "pie",
+      },
+      labels: ["Complete", "Incomplete"],
+      theme: {
+        monochrome: {
+          enabled: false,
+        },
+      },
+      plotOptions: {
+        pie: {
+          //size: 500,
+          startAngle: 0,
+          endAngle: 360,
+          expandOnClick: true,
+          offsetX: 0,
+          offsetY: 0,
+          customScale: 0.77,
+          dataLabels: {
+            offset: 50,
+            minAngleToShowLabel: 10,
           },
-          
-   
-    
+        },
+      },
+      //title: {
+      //  text: "Monochrome Pie",
+      //},
+      dataLabels: {
+        unable: false,
+        unableOnSeries: undefined,
+        formatter(val, opts) {
+          const name = opts.w.globals.labels[opts.seriesIndex];
+          return [name, val.toFixed(1) + "%"];
+        },
+        textAnchor: "middle",
+        distributed: false,
+        offsetX: 0,
+        offsetY: 0,
+        style: {
+          fontSize: "14px",
+          fontWeight: "500",
+          colors: ["black"],
+        },
+      },
+      legend: {
+        show: false,
+      },
+    },
   }),
 };
 </script>
