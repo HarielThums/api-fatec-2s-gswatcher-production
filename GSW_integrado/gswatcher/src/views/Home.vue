@@ -60,7 +60,7 @@
                     <div>Total Tasks: {{ project.total }}</div>
                   </v-card-text>
                   <v-card-actions class="my-0">
-                    <v-btn :to="`{ path: '/projeto', params: {id: ${project.id} }}`" outlined text>
+                    <v-btn :to="{ path: '/projeto/id'}" :id="project.id" outlined text>
                       Details
                       <v-icon>mdi-google-analytics</v-icon>
                     </v-btn>
@@ -90,13 +90,6 @@ export default {
   data: function () {
           return {
         projs: [],
-        title: "",
-        headers: [
-          { text: "Id", align: "start", sortable: false, value: "id" },
-          { text: "Nome", value: "nome", sortable: false },
-          { text: "Sobrenome", value: "sobrenome", sortable: false },
-          { text: "Foto", value:"foto", sortable: false },
-        ],
       };
   },
   methods: {
