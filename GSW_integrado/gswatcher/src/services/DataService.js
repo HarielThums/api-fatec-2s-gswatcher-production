@@ -4,8 +4,13 @@ class DataService {
   getAllDevs() {
     return http.get("/devs");
   }
+  
   getAllProjs() {
     return http.get("/projetos");
+  }
+
+  getAllTasksById(proj) {
+    return http.get("/tasks/" + proj);
   }
 
    get(id) {

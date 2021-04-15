@@ -55,15 +55,23 @@
                   <v-card-text>
                     <div class="my-0 subtitle-1">
                       <!--ALTERAÇÃO-->
-                      <p>Started Date: PLACEHOLDER</p>
+                      <p>||</p>
                     </div>
                     <div>Total Tasks: {{ project.total }}</div>
                   </v-card-text>
                   <v-card-actions class="my-0">
-                    <v-btn :to="{ path: '/projeto/id'}" :id="project.id" outlined text>
+                    <v-btn :to="`/about/${project.id}`" outlined text>
+                    <!-- ROTA DE TESTE  -->
+                    <!-- /about - carrega depois de alterar a página -->
                       Details
                       <v-icon>mdi-google-analytics</v-icon>
-                    </v-btn>
+                    </v-btn>        
+                    <v-btn :to="`/projeto/${project.id}`" outlined text>
+                    <!-- ROTA DE TESTE  -->
+                    <!-- /projeto - carrega antes de alterar a página -->
+                      Details
+                      <v-icon>mdi-close-octagon</v-icon>
+                    </v-btn>        
                   </v-card-actions>
                 </v-card>
               </v-flex>
@@ -93,6 +101,10 @@ export default {
       };
   },
   methods: {
+    log(data) {
+      console.log('data')
+      console.log(data.id);
+    },
     sortBy(prop) {
       this.projs.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
       console.log(this.projs);

@@ -70,7 +70,7 @@
                       <!--ALTERAÇÃO-->
                       <p>Started Date: {{ project.nome }}</p>
                     </div>
-                    <div>Total Tasks: {{ project.nome }}</div>
+                    <div>Total Tasks: {{ project.test }}</div>
                   </v-card-text>
                   <v-card-actions class="my-0">
                     <v-btn to="/projeto" outlined text>
@@ -95,12 +95,14 @@
 // @ is an alias to /src
 // import Upload from "../services/upload";
 import DataService from "../services/DataService";
+var projectReq = {};
 
 export default {
   name: "Projetos",
     data() {
       return {
         projs: [],
+        test: [],
         title: "",
         headers: [
           { text: "Id", align: "start", sortable: false, value: "id" },
@@ -113,7 +115,7 @@ export default {
     methods: {
     sortBy(prop) {
       this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
-      console.log(this.projects);
+      // console.log(this.projects);
     },
     // upload(projects) {
     //   console.log("TESTE");
@@ -128,16 +130,35 @@ export default {
       DataService.getAllProjs()
         .then((response) => {
           this.projs = response.data.map(this.getDisplayProjs);
-          console.log(response.data);
+          // console.log(response.data);
+          projectReq = response.data;
+          // console.log(projectReq);
+          projectReq = JSON.stringify(projectReq);
+          localStorage.setItem('dataReq', projectReq);
+          console.log(this.projs);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-    getDisplayProjs(proj) {
+    getDisplayProjs(proj, test) {
+
+        DataService.getAllTasksById(proj.projeto_id)
+        .then((response) =>{
+          // console.log(response.data);
+          let total =  response.data.length
+          console.log(total);
+          test = {id: proj.projeto_id, name: proj.projeto_nome, projeto: response.data, total: total};
+          // console.log(test);
+        })
+        // console.log(proj.projeto_id);
+
+      // console.log(proj);
+      // console.log(proj.projeto_id);
       return {
         id: proj.projeto_id,
         nome: proj.projeto_nome,
+        test: test,
 
       };
     },
