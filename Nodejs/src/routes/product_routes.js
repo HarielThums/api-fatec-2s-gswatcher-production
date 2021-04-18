@@ -8,8 +8,6 @@ const controller = require('../controller/controller');
 
     router.get('/projetos', controller.listAll_Projects)
 
-    // router.get('/projetos/:id', controller.listAll_Task_per_project) // Rota substituida.
-
     router.get('/tasks', controller.listAll_Task)
 
     router.get('/tasks/:id', controller.listAll_Task_project)
@@ -19,6 +17,8 @@ const controller = require('../controller/controller');
     router.get('/git', controller.listAll_git)
 
     router.get('/status', controller.listAll_Status)
+
+    router.get('/teste', controller.TESTE)
 
     // router.put('/populating', controller.populating)
 

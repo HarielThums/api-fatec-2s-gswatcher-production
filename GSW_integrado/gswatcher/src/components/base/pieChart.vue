@@ -1,11 +1,15 @@
 <template>
-  <div class="chart-wrapper" id="chart">
-    <apexchart
-      class="my-3"
-      type="pie"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
+  <div>
+    <h3>Conclusion Percentage</h3>
+    <v-divider></v-divider>
+    <div class="chart-wrapper" id="chart">
+      <apexchart
+        class="my-3"
+        type="pie"
+        :options="chartOptions"
+        :series="series"
+      ></apexchart>
+    </div>
   </div>
 </template>
 

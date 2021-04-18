@@ -1,13 +1,17 @@
 <template>
-  <div class="chart-wrapper">
-    <apexchart
-      class="my-8"
-      width="100%"
-      type="line"
-      :options="options"
-      :series="series"
-    >
-    </apexchart>
+  <div>
+    <h3>Total Hours Per Period</h3>
+    <v-divider></v-divider>
+    <div class="chart-wrapper">
+      <apexchart
+        class="my-8"
+        width="100%"
+        type="line"
+        :options="options"
+        :series="series"
+      >
+      </apexchart>
+    </div>
   </div>
 </template>
 

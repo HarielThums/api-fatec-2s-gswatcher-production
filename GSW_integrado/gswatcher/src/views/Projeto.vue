@@ -58,48 +58,48 @@ export default {
     table01,
     table02,
   },
-  data () {
+  data() {
     return {
       projeto: [],
       post: null,
-      error: null
-    }
+      error: null,
+    };
   },
-  beforeRouteEnter (to, from, next) {
-    console.log('ave ent');
-    DataService.getAllTasksById(to.params.id, (err, post) => { 
+  beforeRouteEnter(to, from, next) {
+    console.log("ave ent");
+    DataService.getAllTasksById(to.params.id, (err, post) => {
       console.log(err);
-      next(vm => vm.setData(err, post))
+      next((vm) => vm.setData(err, post));
     }),
-    DataService.getAllTasksById(to.params.id).then((response) => {
-      console.log(response.data);
-      // this.projeto = response.data;
-      // console.log(this.projeto);
-    })
+      DataService.getAllTasksById(to.params.id).then((response) => {
+        console.log(response.data);
+        // this.projeto = response.data;
+        // console.log(this.projeto);
+      });
   },
   // when route changes and this component is already rendered,
   // the logic will be slightly different.
-  beforeRouteUpdate (to, from, next) {
-    this.post = null
-    console.log('ave upt');
+  beforeRouteUpdate(to, from, next) {
+    this.post = null;
+    console.log("ave upt");
     DataService.getAllTasksById(to.params.id, (err, post) => {
-      this.setData(err, post)
-      next()
-    })
+      this.setData(err, post);
+      next();
+    });
   },
   methods: {
-    setData (err, post) {
-      console.log('ave set');
+    setData(err, post) {
+      console.log("ave set");
       if (err) {
-        this.error = err.toString()
+        this.error = err.toString();
       } else {
-        this.post = post
-        console.log('ave ave');
+        this.post = post;
+        console.log("ave ave");
         console.log(post);
         console.log(this.post);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

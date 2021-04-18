@@ -1,5 +1,7 @@
 <template>
   <div class="barChart">
+    <h3>Tasks Per Status</h3>
+    <v-divider></v-divider>
     <div id="chart" class="chart-wrapper">
       <apexchart
         class="my-8"
