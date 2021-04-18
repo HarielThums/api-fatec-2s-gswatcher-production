@@ -16,10 +16,10 @@
           <v-icon left small>mdi-folder</v-icon>
           <span class="caption text-lowercase">Project</span>
         </v-btn>
-        <v-btn small flat color="grey" @click="sortBy('id')">
+        <!-- <v-btn small flat color="grey" @click="sortBy('id')">
           <v-icon left small>mdi-calendar</v-icon>
           <span class="caption text-lowercase">Started At</span>
-        </v-btn>
+        </v-btn> -->
         <v-btn small flat color="grey" @click="sortBy('total')">
           <v-icon left small>mdi-list-status</v-icon>
           <span class="caption text-lowercase">Total Tasks</span>
@@ -42,9 +42,9 @@
             <!--xs6 sm4 md6---------------------------------------------------------------------->
             <v-layout row wrap>
               <v-flex xs12 lg12>
-               <v-card
+                <v-card
                   :loading="loading"
-                  :class="`mx-auto my-4 project ${ project.id }`"
+                  :class="`mx-auto my-4 project ${project.id}`"
                   width="420"
                 >
                   <v-responsive>
@@ -61,17 +61,18 @@
                   </v-card-text>
                   <v-card-actions class="my-0">
                     <v-btn :to="`/about/${project.id}`" outlined text>
-                    <!-- ROTA DE TESTE  -->
-                    <!-- /about - carrega depois de alterar a página -->
+                      <!-- ROTA DE TESTE  -->
+                      <!-- /about - carrega depois de alterar a página -->
                       Details
                       <v-icon>mdi-google-analytics</v-icon>
-                    </v-btn>        
-                    <v-btn :to="`/projeto/${project.id}`" outlined text>
+                    </v-btn>
+
+                    <!-- <v-btn :to="`/projeto/${project.id}`" outlined text> -->
                     <!-- ROTA DE TESTE  -->
                     <!-- /projeto - carrega antes de alterar a página -->
-                      Details
-                      <v-icon>mdi-close-octagon</v-icon>
-                    </v-btn>        
+                    <!-- Details -->
+                    <!-- <v-icon>mdi-close-octagon</v-icon> -->
+                    <!-- </v-btn>      -->
                   </v-card-actions>
                 </v-card>
               </v-flex>
@@ -96,20 +97,20 @@ export default {
   },
 
   data: function () {
-          return {
-        projs: [],
-      };
+    return {
+      projs: [],
+    };
   },
   methods: {
     log(data) {
-      console.log('data')
+      console.log("data");
       console.log(data.id);
     },
     sortBy(prop) {
       this.projs.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
       console.log(this.projs);
     },
-     retrieveProjs() {
+    retrieveProjs() {
       DataService.getAllProjs()
         .then((response) => {
           this.projs = response.data.map(this.getDisplayProjs);
@@ -120,16 +121,14 @@ export default {
         });
     },
     getDisplayProjs(proj) {
-
       return {
         id: proj.projeto_id,
         nome: proj.projeto_nome,
         total: proj.total_de_task,
-
       };
     },
   },
-   mounted() {
+  mounted() {
     this.retrieveProjs();
   },
 };

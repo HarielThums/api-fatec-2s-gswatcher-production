@@ -96,7 +96,7 @@ export default {
           labels: {
             show: false,
             formatter: function (val) {
-              return val + "%";
+              return val;
             },
           },
         },
