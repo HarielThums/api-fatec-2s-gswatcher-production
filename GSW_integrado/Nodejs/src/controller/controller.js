@@ -1,5 +1,43 @@
 const db = require('../config/database')
 
+// TESTE
+exports.TESTE = async (req, res) => {
+  const input = req.params.id
+  const response = await db.query(
+    `select * from tbl_projeto 
+    inner join tbl_task on tbl_task.projeto_id = tbl_projeto.projeto_id
+    inner join tbl_task_detalhes on tbl_task.task_detalhes = tbl_task_detalhes.task_detalhes_id
+    inner join tbl_status on tbl_task_detalhes.task_status_id = tbl_status.status_id
+    where tbl_projeto.projeto_id = '${input}' and tbl_status.status_nome = 'DONE'`,
+    );
+    res.status(200).send(response.rows);
+  }; 
+// TESTE
+exports.TESTE2 = async (req, res) => {
+  const input = req.params.id
+  const response = await db.query(
+    `select count(*) from tbl_projeto 
+    inner join tbl_task on tbl_task.projeto_id = tbl_projeto.projeto_id
+    inner join tbl_task_detalhes on tbl_task.task_detalhes = tbl_task_detalhes.task_detalhes_id 
+    inner join tbl_status on tbl_task_detalhes.task_status_id = tbl_status.status_id
+    where tbl_projeto.projeto_id = '${input}'
+    group by tbl_status.status_nome`,
+    );
+    res.status(200).send(response.rows);
+  }; 
+// TESTE
+exports.TESTE3 = async (req, res) => {
+  const input = req.params.id
+  const response = await db.query(
+    `select * from tbl_projeto 
+    inner join tbl_task on tbl_task.projeto_id = tbl_projeto.projeto_id
+    inner join tbl_task_detalhes on tbl_task.task_detalhes = tbl_task_detalhes.task_detalhes_id
+    inner join tbl_status on tbl_task_detalhes.task_status_id = tbl_status.status_id
+    where tbl_projeto.projeto_id = '${input}'`,
+    );
+    res.status(200).send(response.rows);
+  }; 
+
 // buscando todos os devs
 exports.listAll_TBL_DEV = async (req, res) => {
     const response = await db.query(
@@ -18,20 +56,7 @@ exports.findDevByID = async (req,res) => {
 // buscando todos os projetos
 exports.listAll_Projects = async (req, res) => {
     const response = await db.query(
-        `SELECT 
-          P.projeto_nome,
-            (SELECT
-              P.projeto_id),
-            (SELECT 
-              COUNT(T.projeto_id)
-            FROM
-              tbl_task T
-            WHERE
-              T.projeto_id = P.projeto_id) AS total_de_task
-            FROM 
-              tbl_projeto P
-            GROUP BY
-              P.projeto_id`,
+        `SELECT P.projeto_nome,(SELECT P.projeto_id),(SELECT COUNT(T.projeto_id) FROM tbl_task T WHERE T.projeto_id = P.projeto_id) AS total_de_task FROM tbl_projeto P GROUP BY P.projeto_id`,
       );
       res.status(200).send(response.rows);
     };
@@ -70,7 +95,13 @@ exports.listAll_git = async (req, res) => {
     res.status(200).send(response.rows);
   };    
 
-
+// buscando todos os status
+exports.listAll_Status = async (req, res) => {
+  const response = await db.query(
+     'SELECT * FROM tbl_status',
+    );
+    res.status(200).send(response.rows);
+  };    
   
 // Buscando quantas tasks tem um project // Rota desnecessaria, dado incluido na rota /projetos
 /*
