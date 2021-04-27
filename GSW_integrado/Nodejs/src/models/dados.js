@@ -4,9 +4,9 @@ const FuncUniqueDev = require("./devs_unique");
 
 // Dados
 const dadosjira = require('../app/dadosJSON/jira.json')
-dadosjira.forEach(dadosjira => {dadosjira['sistema'] = 1});
+dadosjira.forEach(dadosjira => {dadosjira['sistema'] = 'Jira'});
 const dadostrello = require('../app/dadosJSON/trello.json')
-dadostrello.forEach(dadostrello => {dadostrello['sistema'] = 2});
+dadostrello.forEach(dadostrello => {dadostrello['sistema'] = 'Trello'});
 
 const dados = dadostrello.concat(dadosjira)
 
@@ -32,4 +32,7 @@ var tbl_status = FuncUnique(sl,'status');
 // Buscando todos os usuários existentes:  
 var tbl_dev = FuncUniqueDev(sl);
 
-module.exports = {dados, tbl_project, tbl_status, tbl_dev, dados_tratados}
+// Buscando todos os projetos sistemas:
+var tbl_sistema = FuncUnique(sl,'sistema');
+
+module.exports = {dados, tbl_project, tbl_status, tbl_dev, dados_tratados, tbl_sistema}

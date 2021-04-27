@@ -17,16 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // database start
-const creating_tables = require('../config/creating_tables')
-const populating = require('../config/populating_db')
+const main = require('../controller/upload_data')
+let resposta = main(dados)
+console.log(resposta)
 
-// criando tabelas do banco. ( passo 1 )
-// const resposta = creating_tables()
-// console.log(resposta)
 
-// populando banco com dados do JSON. ( passo 2 )
-// const resposta = populating(dados)
-// console.log(resposta)
 
 // Rotas da API;
 const index = require('../routes/index')

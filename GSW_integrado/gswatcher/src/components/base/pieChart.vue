@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Percentage of Completed and Incompleted Tasks</h3>
+    <h3>Conclusion Percentage</h3>
     <v-divider></v-divider>
     <div class="chart-wrapper" id="chart">
       <apexchart
@@ -20,7 +20,7 @@
 export default {
   name: "lineChart",
   data: () => ({
-    series: [87.5, 12.5],
+    series: [82.5, 12.5],
     chartOptions: {
       chart: {
         width: "100%",
