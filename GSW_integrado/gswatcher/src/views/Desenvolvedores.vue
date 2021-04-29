@@ -1,73 +1,60 @@
 <template>
-  <v-row align="center" class="list px-3 mx-auto">
-    <v-col cols="12" md="8">
-      <v-text-field v-model="title" label="Search by Title"></v-text-field>
-    </v-col>
+  <div>
+    <h1>Developers</h1>
+    <v-divider></v-divider>
+    <v-row align="center" class="list px-3 mx-auto">
+      <v-col cols="12" md="8">
+        <v-text-field v-model="title" label="Search by Title"></v-text-field>
+      </v-col>
 
+      <v-col v-for="dev in devs" :key="dev.id">
+        <!-- Arrumar o tamanho dos Cards -->
+        <v-flex>
+          <!--xs6 sm4 md6---------------------------------------------------------------------->
+          <v-layout row wrap>
+            <v-flex xs12 lg12>
+              <v-card
+                :loading="loading"
+                :class="`mx-auto my-4 project ${dev.id}`"
+                width="420"
+              >
+                <v-card-title class="title">{{ dev.nome }}</v-card-title>
+                <v-card-text>
+                  <div>Total Tasks: {{ dev.nome }}</div>
+                </v-card-text>
+                <v-card-actions class="my-0">
+                  <v-btn to="/projeto" outlined text>
+                    Details
+                    <v-icon>mdi-google-analytics</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+          </v-layout>
 
-    <v-col v-for="dev in devs" :key="dev.id">
-          <!-- Arrumar o tamanho dos Cards -->
-          <v-flex>
-            <!--xs6 sm4 md6---------------------------------------------------------------------->
-            <v-layout row wrap>
-              <v-flex xs12 lg12>
-                <v-card
-                  :loading="loading"
-                  :class="`mx-auto my-4 project ${dev.id}`"
-                  width="420"
-                >
-                  <v-responsive>
-                    <!-- <v-img :src="project.user.avatar" height="120"></v-img> -->
-                  </v-responsive>
+          <!---------------------------------------------------------------------------------->
+        </v-flex>
+      </v-col>
 
-                  <v-card-title class="title">{{
-                    dev.nome
-                  }}</v-card-title>
-                  <v-card-text>
-                    <div class="my-0 subtitle-1">
-                      <!--ALTERAÇÃO-->
-                      <p>Started Date: {{ dev.nome }}</p>
-                    </div>
-                    <div>Total Tasks: {{ dev.nome }}</div>
-                  </v-card-text>
-                  <v-card-actions class="my-0">
-                    <v-btn to="/projeto" outlined text>
-                      Details
-                      <v-icon>mdi-google-analytics</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-flex>
-            </v-layout>
+      <v-col cols="12" md="4">
+        <v-btn small @click="searchTitle"> Search </v-btn>
+      </v-col>
 
-            <!---------------------------------------------------------------------------------->
-          </v-flex>
-        </v-col>
+      <v-col cols="12" sm="12">
+        <v-card class="mx-auto" tile>
+          <v-card-title>Tutorials</v-card-title>
 
-    <v-col cols="12" md="4">
-      <v-btn small @click="searchTitle">
-        Search
-      </v-btn>
-    </v-col>
-
-    <v-col cols="12" sm="12">
-      <v-card class="mx-auto" tile>
-        <v-card-title>Tutorials</v-card-title>
-
-        <v-data-table
-          :headers="headers"
-          :items="devs"
-          disable-pagination
-          :hide-default-footer="true"
-        >
-
-        </v-data-table>
-
-
-
-      </v-card>
-    </v-col>
-  </v-row>
+          <v-data-table
+            :headers="headers"
+            :items="devs"
+            disable-pagination
+            :hide-default-footer="true"
+          >
+          </v-data-table>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -78,13 +65,12 @@ import DataService from "../services/DataService";
 // import barChart from '@/components/base/barChart';
 // import lineChart from '@/components/base/lineChart';
 
-
 export default {
   name: "Desenvolvedores",
-//   components: {
-//     barChart,
-//     lineChart,
-//   },
+  //   components: {
+  //     barChart,
+  //     lineChart,
+  //   },
   data() {
     return {
       devs: [],
@@ -93,7 +79,7 @@ export default {
         { text: "Id", align: "start", sortable: false, value: "id" },
         { text: "Nome", value: "nome", sortable: false },
         { text: "Sobrenome", value: "sobrenome", sortable: false },
-        { text: "Foto", value:"foto", sortable: false },
+        { text: "Foto", value: "foto", sortable: false },
       ],
     };
   },
@@ -112,10 +98,9 @@ export default {
       return {
         id: devs.dev_id,
         nome: devs.nome,
-        sobrenome:devs.sobrenome,
+        sobrenome: devs.sobrenome,
         email: devs.email,
         foto: devs.foto,
-
       };
     },
   },
@@ -136,6 +121,4 @@ export default {
 .project.overdue {
   border-left: 4px solid tomato;
 }
-
-
 </style>
