@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>Total Hours Per Period</h3>
     <v-divider></v-divider>
     <div class="chart-wrapper">
       <apexchart

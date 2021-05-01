@@ -1,6 +1,5 @@
 <template>
   <div class>
-    <h3>DEVs - Incompleted Tasks</h3>
     <v-divider></v-divider>
     <!-- <h1>DEVs - Open Tasks</h1> -->
     <v-card class="my-8">

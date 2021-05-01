@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>Conclusion Percentage</h3>
     <v-divider></v-divider>
     <div class="chart-wrapper" id="chart">
       <apexchart

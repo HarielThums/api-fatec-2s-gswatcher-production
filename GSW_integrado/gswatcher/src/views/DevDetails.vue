@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="devdetails">
     <h1>Dev Details</h1>
+    <v-divider></v-divider>
   </div>
 </template>
 

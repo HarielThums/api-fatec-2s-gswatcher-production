@@ -1,6 +1,6 @@
 <template>
   <div class="projeto">
-    <h1>Projeto</h1>
+    <h1>Project:</h1>
 
     <div class="post">
       <div v-if="loading" class="loading">Loading...</div>
@@ -21,22 +21,27 @@
     </h2>
 
     <v-container class="my-5">
+      <h3>Tasks per Status</h3>
       <barChart />
     </v-container>
 
     <v-container class="my-5">
+      <h3>Total Hours Per Period</h3>
       <lineChart />
     </v-container>
 
     <v-container class="my-5">
+      <h3>DEVs - Completed Tasks</h3>
       <table01 />
     </v-container>
 
     <v-container class="my-5">
+      <h3>DEVs - Incompleted Tasks</h3>
       <table02 />
     </v-container>
 
     <v-container class="my-5">
+      <h3>Completede Tasks Percentage</h3>
       <pieChart />
     </v-container>
   </div>
