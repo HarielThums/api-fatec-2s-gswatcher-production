@@ -31,7 +31,7 @@
     </v-container>
 
     <v-container class="my-5">
-      <h3>Conclusion Percentage</h3>
+      <h3>Conclusion Peercentage</h3>
       <v-divider></v-divider>
       <pieChart />
     </v-container>

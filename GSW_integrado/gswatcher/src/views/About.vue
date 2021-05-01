@@ -2,23 +2,18 @@
   <div class="projeto">
     <h1>Projeto</h1>
 
-     <div class="post">
-    <div v-if="loading" class="loading">
-      Loading...
+    <div class="post">
+      <div v-if="loading" class="loading">Loading...</div>
+
+      <div v-if="error" class="error">
+        {{ error }}
+      </div>
+
+      <div v-if="post" class="content">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+      </div>
     </div>
-
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
-
-    <div v-if="post" class="content">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.body }}</p>
-    </div>
-  </div>
-
-
-
 
     <h2 class="pa-2 font-weight-light text-uppercase grey--text">
       [Albuquerque Albuquerque and Carvalho Comércio] - Mandatory human-resource
@@ -44,7 +39,6 @@
     <v-container class="my-5">
       <pieChart />
     </v-container>
-    
   </div>
 </template>
 
@@ -68,50 +62,51 @@ export default {
     table01,
     table02,
   },
-  data () {
+  data() {
     return {
       projeto: [],
       loading: false,
       post: null,
-      error: null
-    }
+      error: null,
+    };
   },
-  created () {
+  created() {
     // fetch the data when the view is created and the data is
     // already being observed
-    this.fetchData()
+    this.fetchData();
   },
   watch: {
     // call again the method if the route changes
-    '$route': 'fetchData'
+    $route: "fetchData",
   },
   methods: {
-    fetchData () {
-      this.error = this.post = null
-      this.loading = true
-      const fetchedId = this.$route.params.id
+    fetchData() {
+      this.error = this.post = null;
+      this.loading = true;
+      const fetchedId = this.$route.params.id;
       // replace `getPost` with your data fetching util / API wrapper
       console.log(this.$route.params);
       DataService.getAllTasksById(fetchedId, (err, post) => {
         console.log(this.post);
-        
+
         // make sure this request is the last one we did, discard otherwise
-        if (this.$route.params.id !== fetchedId) return
-        this.loading = false
+        if (this.$route.params.id !== fetchedId) return;
+        this.loading = false;
         if (err) {
-          this.error = err.toString()
+          this.error = err.toString();
         } else {
-          this.post = post
+          this.post = post;
         }
-      }).then((response) => {
+      })
+        .then((response) => {
           this.projeto = response.data;
           console.log(response.data);
         })
         .catch((e) => {
           console.log(e);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

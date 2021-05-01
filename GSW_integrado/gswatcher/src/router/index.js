@@ -8,6 +8,7 @@ import Upload from '../views/Upload.vue'
 import Projetos from '../views/Projetos.vue'
 import Projeto from '../views/Projeto.vue'
 import FirstAccess from '../views/FirstAccess.vue'
+import DevDetails from '../views/DevDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,12 @@ const routes = [
     path: '/firstaccess',
     name: 'firstaccess',
     component: FirstAccess
+  },
+
+  {
+    path: '/devdetails:id?',
+    name: 'devdetails',
+    component: DevDetails
   }
 ]
 
