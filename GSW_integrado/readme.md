@@ -50,7 +50,7 @@ DATABASE_URL=postgres://me:password@localhost:5432/api
 ### Rode o servidor:
 
 na pasta "Nodejs" rode pelo prompt: 
-> `node app.js`
+> `npm start`
 
 
 ###  Rode o Cliente:
