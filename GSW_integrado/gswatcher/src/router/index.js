@@ -61,9 +61,8 @@ const routes = [
     name: 'firstaccess',
     component: FirstAccess
   },
-
   {
-    path: '/devdetails:id?',
+    path: '/devdetails',
     name: 'devdetails',
     component: DevDetails
   }

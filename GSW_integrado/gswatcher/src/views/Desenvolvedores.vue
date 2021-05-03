@@ -23,7 +23,14 @@
                   <div>Total Tasks: {{ dev.nome }}</div>
                 </v-card-text>
                 <v-card-actions class="my-0">
-                  <v-btn to="/devdetails" outlined text>
+                  <v-btn
+                    :to="{
+                      name: 'devdetails',
+                      params: { id: dev.id, name: dev.nome },
+                    }"
+                    outlined
+                    text
+                  >
                     Details
                     <v-icon>mdi-google-analytics</v-icon>
                   </v-btn>
