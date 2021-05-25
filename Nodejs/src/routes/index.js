@@ -1,15 +1,7 @@
 const express = require('express')
-const router = express.Router()
+const router = require('express-promise-router')()
 
-router.use('/api', (req,res) => {
-    res.status(200).send({
-        success: 'true',
-        message: 'Node.js, Express, and Postgres API',
-        version: '1.0.0'
-    })
-})
-
-router.post('/api', (req,res) => {
+router.get('/', (req,res) => {
     res.status(200).send({
         success: 'true',
         message: 'Node.js, Express, and Postgres API',
