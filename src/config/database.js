@@ -5,7 +5,10 @@ dotenv.config();
 
 //Conexão com BD;
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    dialectOptions: {
+        "ssl": true
+    }
   })
 
   pool.on('connect', () => {

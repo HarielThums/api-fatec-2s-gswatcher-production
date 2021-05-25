@@ -7,6 +7,9 @@ module.exports = {
     'database': global.process.env.DATABASE_DATABASE,
     'host': global.process.env.DATABASE_HOST,
     dialect: 'postgres',
+    dialectOptions: {
+        "ssl": true
+    },
     define: {
         timestamp: true, // created_at, update_at
         underscored: true, //formato das tabelas snake case
