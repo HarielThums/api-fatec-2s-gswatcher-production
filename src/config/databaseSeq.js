@@ -7,9 +7,6 @@ module.exports = {
     'database': "dd4l04u3h53877",
     'host': "ec2-54-197-100-79.compute-1.amazonaws.com",
     dialect: 'postgres',
-    dialectOptions: {
-        "ssl": true
-    },
     define: {
         timestamp: true, // created_at, update_at
         underscored: true, //formato das tabelas snake case
