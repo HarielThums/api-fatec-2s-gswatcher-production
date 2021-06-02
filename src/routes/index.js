@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/api', (req,res) => {
+router.get('/', (req,res) => {
     res.status(200).send({
         success: 'true',
         message: 'Node.js, Express, and Postgres API',
