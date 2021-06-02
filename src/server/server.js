@@ -26,9 +26,7 @@ main(dados)
 // Rotas da API;
 const AuthRoute = require('../routes/auth_routes')
 const productRoute = require('../routes/product_routes')
-const index = require('../routes')
 
-app.use('/', index)
 app.use('/auth', AuthRoute)
 app.use('/api/', productRoute)
 
