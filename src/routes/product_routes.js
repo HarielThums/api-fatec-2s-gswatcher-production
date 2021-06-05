@@ -27,7 +27,7 @@ const authMiddleware = require('../middlewares/auth')
     router.get('/teste3/:id', controller.TESTE3)
 
     // Upload button routes
-    router.post('/',controller.singlefile)
+    router.post('/upload_json',controller.singlefile)
     router.get('/uploadButton',controller.uploadButton)
     
     // charts routes:
