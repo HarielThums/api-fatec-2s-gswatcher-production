@@ -57,12 +57,13 @@ exports.TESTE2 = async (req, res) => {
 exports.TESTE3 = async (req, res) => {
   const id = req.params.id
   const response = await db.query(
-    `select tbl_projeto.projeto_id, tbl_projeto.projeto_nome, tbl_task.task_id,tbl_task.dev_id,
-     tbl_task.nome, tbl_task_detalhes.inicio, tbl_task_detalhes.termino, tbl_task_Detalhes.horas,
+    `select tbl_projeto.projeto_id, tbl_projeto.projeto_nome, tbl_task.task_id,tbl_task.dev_id, tbl_dev.nome, tbl_dev.sobrenome,
+     tbl_task_detalhes.inicio, tbl_task_detalhes.termino, tbl_task_Detalhes.horas,
       tbl_status.status_id, tbl_status.status_nome from tbl_projeto 
     inner join tbl_task on tbl_task.projeto_id = tbl_projeto.projeto_id
     inner join tbl_task_detalhes on tbl_task.task_detalhes = tbl_task_detalhes.task_detalhes_id
     inner join tbl_status on tbl_task_detalhes.task_status_id = tbl_status.status_id
+    inner join tbl_dev on tbl_task.dev_id = tbl_dev.dev_id
     where tbl_projeto.projeto_id = '${id}'`,
     );
     res.status(200).send(response.rows);
@@ -136,27 +137,7 @@ exports.listAll_Status = async (req, res) => {
   };    
 
 
-  //POST route
-  exports.singlefile = async (req, res) => {
-
-    if (!req.files) {
-        return res.status(500).send({ msg: "file is not found" })
-    }
-    // accessing the file
-    global.myFile = req.files.file;
-
-    //  mv() method places the file inside public directory
-    myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
-        if (err) {
-            console.log(err)
-            return res.status(500).send({ msg: "Error occured" });
-        }
-        // returing the response with file path and name
-        return res.send({name: myFile.name, path: `/${myFile.name}`});
-    });
-
-}
-
+ 
 
 exports.main_chart = async (req, res) => {
   const saveTableContent = require('../models/saveTableContent')
@@ -206,36 +187,44 @@ exports.main_chart = async (req, res) => {
   }; 
 
 
-  exports.uploadButton = async (req, res) => {
-    try{
-      const funcDados = require('../models/treating_data')    
-      dados = await funcDados(myFile.name);
 
-      const CreateTables = require('../models/create_tables')
-      await CreateTables();
+   //POST route
+  exports.singlefile = async (req, res) => {
 
-      const CheckTablesNull = require('../models/check_tables_null')
-      const insertUSER = require('../models/insert_user1')
-      let check = await CheckTablesNull('tbl_usuario');
-      if (check)
-        await insertUSER();
-
-      const Insert_data = require('../models/insert_data')
-      await Insert_data(dados);
-
-      const Save_data = require('../models/save_data')
-      let values = await Save_data();
-
-      const insertRECARGA = require('../models/insert_RECARGA')
-      await insertRECARGA(values.tbl_projeto,values.tbl_status,values.tbl_sistema, dados.dados_tratados);
-
-      res.status(200).send({message:"The data was saved sucessfully!"});
-
-    } catch (error) {
-        return res.status(400).send({ error: 'Cannot save data, try again' })
+    if (!req.files) {
+        return res.status(500).send({ msg: "file is not found" })
     }
-  
-  };
+    // accessing the file
+    global.myFile = req.files.file;
+        try{
+	      const funcDados = require('../models/treating_data')    
+	      let dados = await funcDados(JSON.parse(myFile.data));
+
+	      const CreateTables = require('../models/create_tables')
+	      await CreateTables();
+
+	      const CheckTablesNull = require('../models/check_tables_null')
+	      const insertUSER = require('../models/insert_user1')
+	      let check = await CheckTablesNull('tbl_usuario');
+	      if (check)
+	        await insertUSER();
+
+	      const Insert_data = require('../models/insert_data')
+	      await Insert_data(dados);
+
+	      const Save_data = require('../models/save_data')
+	      let values = await Save_data();
+
+	      const insertRECARGA = require('../models/insert_RECARGA')
+	      await insertRECARGA(values.tbl_projeto,values.tbl_status,values.tbl_sistema, dados.dados_tratados);
+
+	      res.status(200).send({message:"The data was saved sucessfully!"});
+
+	    } catch (error) {
+	        return res.status(400).send({ error: 'Cannot save data, try again' })
+	    }
+
+	};
 
 
 

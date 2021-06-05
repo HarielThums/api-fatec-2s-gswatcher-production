@@ -13,7 +13,7 @@ async function sistema(input){
 
 const funcDados = async function(input){
 
-let dados = require('../controller/public/'+input);
+let dados = input;
 
 const FuncUnique = require("./unique");
 const FuncUniqueDev = require("./devs_unique");
@@ -22,6 +22,9 @@ const FuncUniqueDev = require("./devs_unique");
 dados = await sistema(dados)
 
 //unifying keys
+dados = input;
+
+
 let sl = JSON.stringify(dados)
 sl = sl.replace(/_id/g,'id');
 sl = sl.replace(/userName/g,'first_name');
