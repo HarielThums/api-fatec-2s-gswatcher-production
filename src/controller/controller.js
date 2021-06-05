@@ -224,7 +224,39 @@ exports.main_chart = async (req, res) => {
 	        return res.status(400).send({ error: 'Cannot save data, try again' })
 	    }
 
-	};
+	}
+
+
+  exports.uploadButton = async (req, res) => {
+    try{
+      const funcDados = require('../models/treating_data')    
+      dados = await funcDados(myFile.name);
+
+      const CreateTables = require('../models/create_tables')
+      await CreateTables();
+
+      const CheckTablesNull = require('../models/check_tables_null')
+      const insertUSER = require('../models/insert_user1')
+      let check = await CheckTablesNull('tbl_usuario');
+      if (check)
+        await insertUSER();
+
+      const Insert_data = require('../models/insert_data')
+      await Insert_data(dados);
+
+      const Save_data = require('../models/save_data')
+      let values = await Save_data();
+
+      const insertRECARGA = require('../models/insert_RECARGA')
+      await insertRECARGA(values.tbl_projeto,values.tbl_status,values.tbl_sistema, dados.dados_tratados);
+
+      res.status(200).send({message:"The data was saved sucessfully!"});
+
+    } catch (error) {
+        return res.status(400).send({ error: 'Cannot save data, try again' })
+    }
+  
+  };
 
 
 
