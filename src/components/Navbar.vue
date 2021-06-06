@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="!['login', 'register', 'forgotpass'].includes($route.name)">
+  <nav v-if="!['login', 'register', 'forgotpass', 'reset'].includes($route.name)">
     <v-app-bar dense app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
