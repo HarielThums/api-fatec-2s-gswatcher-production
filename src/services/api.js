@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const http = axios.create({
-    baseURL: "http://localhost:3000/auth",
+    baseURL: "https://api-gswatcher.herokuapp.com/auth",
     headers: {
         "Content-type": "application/json"
     }

@@ -1,6 +1,5 @@
 <template>
   <div class="chart">
-    <div class="chart-wrapper">
       <apexchart
         class="my-8"
         height="300"
@@ -10,7 +9,6 @@
         :series="series"
       >
       </apexchart>
-    </div>
   </div>
 </template>
 

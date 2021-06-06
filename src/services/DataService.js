@@ -22,7 +22,7 @@ class DataService {
   }
 
   create(data) {
-    return http.post("/", data);
+    return http.post("/upload_json", data);
   }
 
   // create(data) {

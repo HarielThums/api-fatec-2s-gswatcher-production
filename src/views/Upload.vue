@@ -12,10 +12,6 @@
           <li>Click on <strong class="primary--text">BROWSE</strong></li>
           <li>Select your file from your device</li>
           <li>Click on <strong class="primary--text">SAVE</strong></li>
-          <li>
-            Click on green button
-            <strong class="primary--text">SAVE DATA</strong>
-          </li>
         </ol>
 
         <!-- <v-container>
@@ -99,36 +95,13 @@
 
         <br />
         <br />
-        <div v-if="submitted2">
-          <div v-if="uploaded">
-            <v-alert dense text type="success">
-              {{ message_upload.data.message }}
-            </v-alert>
-          </div>
-          <div v-else-if="uploaded_error">
-            <v-alert dense outlined type="error">
-              {{ error }}
-            </v-alert>
-          </div>
-
-          <v-row align="center" justify="space-around">
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn dark color="cyan darken-4" to="" v-on:click="populate_db()"
-                >SAVE DATA</v-btn
-              >
-            </v-card-actions>
-          </v-row>
-          <br />
-          <br />
-          <div v-if="uploaded">
+          <div v-if="submitted">
             <p class="cyan--text text--darken-4">
               Now your file is in database and will be displayed in
               <strong>GSWatcher</strong>
               Application
             </p>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -157,8 +130,6 @@ export default {
       error: "",
       submitted_error: false,
       submitted: false,
-      uploaded_error: false,
-      uploaded: false,
       submitted2: false,
     };
   },
@@ -172,31 +143,15 @@ export default {
         this.message_submit = "The file was uploaded successfully";
         this.submitted = true;
         this.submitted2 = true;
-        this.uploaded = false;
       } catch (error) {
         this.error = "Error has occurred, try again latter";
         this.submitted_error = true;
-        this.uploaded = false;
       }
 
       this.dialog = false;
     },
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
-    },
-
-    async populate_db() {
-      try {
-        let resp = await DataService.uploadButton();
-        this.message_upload = resp;
-        this.uploaded = true;
-        this.submitted = false;
-      } catch (error) {
-        this.error =
-          "Error has occurred, check if the uploaded file is *.json extension";
-        this.uploaded_error = true;
-        this.submitted = false;
-      }
     },
   },
 };
@@ -216,5 +171,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
 </style>

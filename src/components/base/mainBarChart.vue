@@ -1,10 +1,9 @@
 <template>
   <div class="mainBarChart">
-    <div class="chart">
-      <!-- <v-btn @click="setData(compltask)"></v-btn> -->
-      <div id="chart" class="chart-wrapper">
-        <!-- original: width="1000"------------------------------------------------------------------>
-        <!-- original: type="bar"------------------------------------------------------------------>
+    <div id="chart" class="chart">
+      <!-- <v-btn @click="setData(compltask)"></v-btn> -->   
+        <!-- original: width="1000"---------------------------->
+        <!-- original: type="bar"------------------------------>
         <apexchart
           min-width="350"
           height="500"
@@ -12,7 +11,7 @@
           :options="chartOptions"
           :series="series"
         ></apexchart>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -207,7 +206,6 @@ export default {
 
 <style>
 div.chart-wrapper {
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -216,6 +214,5 @@ div.chart-wrapper {
   padding: 10px 10px 0px 10px;
   border: 2px solid white;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px 2px grey;
 }
 </style>

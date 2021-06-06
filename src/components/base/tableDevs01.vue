@@ -14,7 +14,7 @@
       <v-data-table
         height="250"
         :headers="headers"
-        :items="desserts"
+        :items="formatedarray"
         :search="search"
       ></v-data-table>
     </v-card>
@@ -24,9 +24,10 @@
 <script>
 export default {
   name: "table01",
-  props: ["project"],
   data() {
     return {
+      formatedarray: [],
+      singleJson: {},
       search: "",
       headers: [
         {
@@ -41,67 +42,88 @@ export default {
       ],
       desserts: [
         {
-          name: "Ana Júlia",
-          completedTasks: 159,
-          startDate: 159,
-          totalHours: 6.0,
-        },
-        {
-          name: "Antônio",
-          completedTasks: 237,
-          startDate: 237,
-          totalHours: 9.0,
-        },
-        {
-          name: "Bernardo",
-          completedTasks: 262,
-          startDate: 262,
-          totalHours: 16.0,
-        },
-        {
-          name: "Carlos",
-          completedTasks: 305,
-          startDate: 305,
-          totalHours: 3.7,
-        },
-        {
-          name: "Cecília",
-          completedTasks: 356,
-          startDate: 356,
-          totalHours: 16.0,
-        },
-        {
-          name: "Célia",
-          completedTasks: 375,
-          startDate: 375,
-          totalHours: 0.0,
-        },
-        {
-          name: "Davi",
-          completedTasks: 392,
-          startDate: 392,
-          totalHours: 0.2,
-        },
-        {
-          name: "Elísio",
-          completedTasks: 408,
-          startDate: 408,
-          totalHours: 3.2,
-        },
-        {
-          name: "Enzo Gabriel",
-          completedTasks: 452,
-          startDate: 452,
-          totalHours: 25.0,
-        },
-        {
-          name: "Fábio",
-          completedTasks: 518,
-          startDate: 518,
-          totalHours: 26.0,
+          name: "Nome",
+          completedTasks: 0,
+          startDate: 0,
+          totalHours: 0,
         },
       ],
     };
+  },
+
+  methods: {
+    treatCycle(projs) {
+      // console.log(projs);
+      var devs = {};
+      projs.forEach(function (e) {
+        if (!devs[e.dev_id]) devs[e.dev_id] = [e];
+        else devs[e.dev_id].push(e);
+      });
+
+      for (const element in devs) {
+        let horas = [];
+        let inicio = [];
+        let nome = '';
+        let obj = devs[element];
+        // console.log(obj)
+        obj.forEach((e) => {
+          if(e.nome){
+            nome = e.nome + " " + e.sobrenome
+          }
+          if (e.horas) {
+            horas.push(e.horas);
+          }
+          if (e.inicio) {
+            inicio.push(new Date(e.inicio));
+          }
+        });
+        let minDate = new Date(Math.min.apply(null, inicio));
+        let total = horas.reduce(
+          (total, currentElement) => total + currentElement
+        );
+        let totalCompletas = horas.length;
+
+        devs[element].horasGerais = [horas];
+        devs[element].inicioGeral = [inicio];
+        devs[element].dataInicio = minDate;
+        devs[element].tasksCompletas = totalCompletas;
+        devs[element].totalHoras = total;
+        devs[element].nome = nome;
+      }
+      // console.log(devs);
+      this.setArray(devs);
+    },
+
+    setArray(devs) {
+      this.formatedarray = []
+      for (let k in devs) {
+        this.singleJson = {}
+        this.singleJson = {
+          name: devs[k]["nome"],
+          completedTasks: devs[k]["tasksCompletas"],
+          startDate: devs[k]["dataInicio"],
+          totalHours: devs[k]["totalHoras"],
+        };
+        this.formatedarray.push(this.singleJson);
+        this.formatedarray = [...new Set(this.formatedarray)]
+      }
+    },
+  },
+
+  computed: {
+    project() {
+      return this.$store.state.project;
+    },
+  },
+
+  mounted() {
+    this.$store.dispatch("getProject", this.$route.params.id);
+  },
+
+  watch: {
+    project() {
+      this.treatCycle(this.project);
+    },
   },
 };
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div class="chart">
-    <div class="chart-wrapper" id="chart">
       <apexchart
         class="my-3"
         type="pie"
@@ -9,7 +8,6 @@
         :options="chartOptions"
         :series="series"
       ></apexchart>
-    </div>
   </div>
 </template>
 
@@ -105,8 +103,8 @@ export default {
       })
       //console.log(this.incomplData)
 
-      let completed  = (this.complData.length/2)
-      let incompleted  = (this.incomplData.length/2)
+      let completed  = (this.complData.length/4)
+      let incompleted  = (this.incomplData.length/4)
 
       
       // this.series = [18.7, 81.3]

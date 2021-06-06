@@ -1,7 +1,6 @@
 <template>
   <div class="barChart">
     <div class="chart">
-      <div id="chart" class="chart-wrapper">
         <apexchart
           class="my-8"
           type="bar"
@@ -10,7 +9,6 @@
           :options="chartOptions"
           :series="series"
         ></apexchart>
-      </div>
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@
 <script>
 export default {
   name: "barChart",
-  props: ["project"],
+  // props: ["project"],
 
   data() {
     return {
@@ -43,6 +41,7 @@ export default {
             },
           },
         },
+        colors: ["#01579b"],
         title: {
           text: "Tasks per Status",
           floating: true,
@@ -62,7 +61,7 @@ export default {
           offsetY: -20,
           style: {
             fontSize: "12px",
-            colors: ["#1976d2"],
+            colors: ["#000"],
           },
         },
 
@@ -114,14 +113,30 @@ export default {
             },
           },
         },
-        colors: ["#304758"],
       },
     };
   },
-  mounted() {
-    console.log("BarChart mounted!");
-    this.count(this.project);
+
+  computed: {
+    project() {
+      return this.$store.state.project;
+    },
   },
+
+  mounted() {
+    this.$store.dispatch("getProject", this.$route.params.id);
+  },
+
+  watch: {
+    project() {
+      this.count(this.project);
+    },
+  },
+
+  // mounted() {
+  //   console.log("BarChart mounted!");
+  //   this.count(this.project);
+  // },
 
   methods: {
     count(project) {
