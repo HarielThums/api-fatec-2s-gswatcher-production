@@ -2,7 +2,7 @@ import axios from 'axios';
 // import * as types from './mutation-types';
 
 export const getProjects = ({ commit }) => {
-    axios.get('https://api-gswatcher.herokuapp.comapi/projetos') //ip local para prevenir CORS
+    axios.get('https://api-gswatcher.herokuapp.com/api/projetos') //ip local para prevenir CORS
         .then(response => {
             commit('SET_PROJECTS', response.data);
         })
