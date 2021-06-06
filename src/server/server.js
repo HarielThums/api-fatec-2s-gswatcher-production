@@ -7,7 +7,7 @@ const cors = require("cors");
 require('../database')
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "https://gswatcher.herokuapp.com" || "http://localhost:8080"
 };
 
 app.use(express.static('public'))
