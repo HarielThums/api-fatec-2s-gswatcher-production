@@ -108,9 +108,12 @@ export default {
   //   },
   // },
 
-  // mounted() {
-  //   this.$store.dispatch("getProject", this.$route.params.id);
-  // },
+  mounted() {
+    // this.$store.dispatch("getProject", this.$route.params.id);
+    if (localStorage.getItem("@gswatcher:token") == null) {
+      this.$router.push("/login");
+    }
+  },
 
   // watch: {
   //   project() {

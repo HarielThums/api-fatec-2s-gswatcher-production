@@ -154,6 +154,12 @@ export default {
       this.file = this.$refs.file.files[0];
     },
   },
+  mounted() {
+    //*** TENTATIVA DE LIMITAR O ACESSO BASEADO NA TOKEN ***
+    if (localStorage.getItem("@gswatcher:token") == null) {
+       this.$router.push("/login");
+     }
+  }
 };
 </script>
 
