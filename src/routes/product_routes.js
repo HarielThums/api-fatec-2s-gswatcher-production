@@ -3,7 +3,7 @@ const controller = require('../controller/controller');
 const authMiddleware = require('../middlewares/auth')
 
 // Middleware
-    // router.use(authMiddleware)
+    router.use(authMiddleware)
 
 // >> Definindo as rotas.
     router.get('/devs', controller.listAll_TBL_DEV)
