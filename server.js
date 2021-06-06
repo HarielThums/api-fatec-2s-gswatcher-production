@@ -9,3 +9,10 @@ var port = process.env.PORT || 8080
 app.listen(port)
 
 console.log('server started ' + port)
+
+app.route('/*')
+    .get(function(req, res) {
+          res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
+module.exports = app;
