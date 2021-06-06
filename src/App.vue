@@ -28,5 +28,12 @@ export default {
   data: () => ({
     //
   }),
+
+  mounted() {
+    //*** TENTATIVA DE LIMITAR O ACESSO BASEADO NA TOKEN ***
+    if (localStorage.getItem("@gswatcher:token") == null) {
+       this.$router.push("/login");
+     }
+  },
 };
 </script>

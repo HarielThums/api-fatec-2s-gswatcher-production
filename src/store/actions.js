@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getProjects = ({ commit }) => {
     const token = localStorage.getItem('@gswatcher:token')
-    axios.get('https://api-gswatcher.herokuapp.com/api/projetos', { headers: { 'Authorization':token } }) //ip local para prevenir CORS
+    axios.get('https://api-gswatcher.herokuapp.com/api/projetos', { headers: { 'Authorization': 'Bearer ' + token } }) //ip local para prevenir CORS
         .then(response => {
             commit('SET_PROJECTS', response.data);
         })
