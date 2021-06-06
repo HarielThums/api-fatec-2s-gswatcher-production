@@ -7,7 +7,9 @@
             <v-card class="elevation-12\" flat="true" height="120">
               <div><v-img src="../assets/gswatcher-logo.png"></v-img></div>
             </v-card>
-
+            <v-alert dense outlined type="error" v-show="this.message">
+              {{ this.message }}
+            </v-alert>
             <v-card class="elevation-12\" flat="true">
               <v-card-text>
                 <v-form>
@@ -17,6 +19,7 @@
                     name="name"
                     label="Name"
                     type="text"
+                    required
                   ></v-text-field>
                   <v-text-field
                     v-model="form.email"
@@ -24,6 +27,7 @@
                     name="email"
                     label="Email"
                     type="text"
+                    required
                   ></v-text-field>
                   <v-text-field
                     v-model="form.password"
@@ -32,6 +36,7 @@
                     name="password"
                     label="Password"
                     type="password"
+                    required
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -80,19 +85,50 @@ export default {
         email: "",
         password: "",
       },
+      reg: "",
+      message: "",
     };
   },
   methods: {
     async register() {
-      try {
-        const response = await http.post("/register", this.form);
-        localStorage.setItem("@gswatcher:token", response.data.token);
-        this.$router.push("/");
-      } catch (error) {
-        console.error(error);
-        if (error == "Error: Request failed with status code 403")
-          alert("Sorry! The email is already been used.");
+      if (
+        this.form.name == "" ||
+        this.form.email == "" ||
+        this.form.password == ""
+      ) {
+        this.reg = 0;
+        this.message = "Fill all the fields!";
+        // alert("Fill all the fields!");
+      } else {
+        if (this.validateEmail()) {
+          try {
+            const response = await http.post("/register", this.form);
+            localStorage.setItem("@gswatcher:token", response.data.token);
+            this.$router.push("/login");
+          } catch (error) {
+            console.error(error);
+            if (error == "Error: Request failed with status code 403") {
+              this.message = "Sorry! Try again!";
+              // alert("Sorry! Try again!");
+            }
+          }
+        }
       }
+    },
+
+    validateEmail() {
+      if (
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+          this.form.email
+        )
+      ) {
+        // alert("You have entered a valid email address!");
+        return true;
+      }
+      this.message =
+        "You have entered an invalid email address! Please try again.";
+      // alert("You have entered an invalid email address! Please try again.");
+      return false;
     },
   },
 };

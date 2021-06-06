@@ -15,7 +15,7 @@
       <v-data-table
         height="300"
         :headers="headers"
-        :items="desserts"
+        :items="formatedarray"
         :search="search"
       ></v-data-table>
     </v-card>
@@ -26,6 +26,8 @@
 export default {
   data() {
     return {
+      formatedarray: [],
+      singleJson: {},
       search: "",
       headers: [
         {
@@ -43,53 +45,96 @@ export default {
           openTasks: 6.0,
           startDate: 159,
         },
-        {
-          name: "Antônio",
-          openTasks: 9.0,
-          startDate: 237,
-        },
-        {
-          name: "Bernardo",
-          openTasks: 16.0,
-          startDate: 262,
-        },
-        {
-          name: "Carlos",
-          openTasks: 3.7,
-          startDate: 305,
-        },
-        {
-          name: "Cecília",
-          openTasks: 16.0,
-          startDate: 356,
-        },
-        {
-          name: "Célia",
-          openTasks: 0.0,
-          startDate: 375,
-        },
-        {
-          name: "Davi",
-          openTasks: 0.2,
-          startDate: 392,
-        },
-        {
-          name: "Elísio",
-          openTasks: 3.2,
-          startDate: 408,
-        },
-        {
-          name: "Enzo Gabriel",
-          openTasks: 25.0,
-          startDate: 452,
-        },
-        {
-          name: "Fábio",
-          openTasks: 26.0,
-          startDate: 518,
-        },
       ],
     };
+  },
+  methods: {
+    treatCycle(projs) {
+      console.log(projs);
+      var devs = {};
+      projs.forEach(function (e) {
+        if (!devs[e.dev_id]) devs[e.dev_id] = [e];
+        else devs[e.dev_id].push(e);
+      });
+
+      for (const element in devs) {
+        let inicio = [];
+        let nome = '';
+        let obj = devs[element];
+        obj.forEach((e) => {
+          if(e.nome){
+            nome = e.nome + " " + e.sobrenome
+          }
+          if (!e.horas) {
+            if (e.inicio) {
+              inicio.push(new Date(e.inicio));
+            }
+          }
+        });
+        let minDate = new Date(Math.min.apply(null, inicio));
+        let totalCompletas = '';
+        if (inicio.length) {
+          totalCompletas = inicio.length;
+        }else{
+          totalCompletas = '-'
+          minDate = '--'
+          }
+        devs[element].inicioGeral = [inicio];
+        devs[element].dataInicio = minDate;
+        devs[element].tasksIncompletas = totalCompletas;
+        devs[element].nome = nome;
+      }
+      console.log(devs);
+      this.setArray(devs);
+    },
+
+    setArray(devs) {
+      this.formatedarray = []
+      // let multipleJsons = []
+      // let comp = []
+      for (let k in devs) {
+        // this.formatedarray = []
+        this.singleJson = {}
+        this.singleJson = {
+          name: devs[k]["nome"],
+          openTasks: devs[k]["tasksIncompletas"],
+          startDate: devs[k]["dataInicio"],
+        };
+        console.log(this.singleJson);
+        this.formatedarray.push(this.singleJson);
+        this.formatedarray = [...new Set(this.formatedarray)]
+      }
+      // comp = multipleJsons
+      // let aaa = this.getUnique(multipleJsons, comp)
+      // console.log(aaa)
+    },
+
+    // getUnique(arr, comp) {
+    //   // store the comparison  values in array
+    //   let unique =  arr.map(e => e[comp])
+    //   // store the indexes of the unique objects
+    //   .map((e, i, final) => final.indexOf(e) === i && i)
+    //   // eliminate the false indexes & return unique objects
+    //   .filter((e) => arr[e]).map(e => arr[e]);
+    //   console.log(unique)
+    //   return unique;
+    // }
+  },
+
+  computed: {
+    project() {
+      return this.$store.state.project;
+    },
+  },
+
+  mounted() {
+    this.$store.dispatch("getProject", this.$route.params.id);
+  },
+
+  watch: {
+    project() {
+      this.treatCycle(this.project);
+    },
   },
 };
 </script>

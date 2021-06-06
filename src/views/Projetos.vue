@@ -102,21 +102,21 @@ export default {
     },
   },
 
-  computed: {
-    project() {
-      return this.$store.state.project;
-    },
-  },
+  // computed: {
+  //   project() {
+  //     return this.$store.state.project;
+  //   },
+  // },
 
-  mounted() {
-    this.$store.dispatch("getProject", this.$route.params.id);
-  },
+  // mounted() {
+  //   this.$store.dispatch("getProject", this.$route.params.id);
+  // },
 
-  watch: {
-    project() {
-      this.count(this.project);
-    },
-  },
+  // watch: {
+  //   project() {
+  //     this.count(this.project);
+  //   },
+  // },
 
   // methods: {
   //   fetchProjs: function () {

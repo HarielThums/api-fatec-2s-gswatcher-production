@@ -319,8 +319,7 @@ export default {
 </script>
 
 <style scoped>
-div.chart-wrapper {
-  display: flex;
+div.chart {
   align-items: center;
   justify-content: center;
 }

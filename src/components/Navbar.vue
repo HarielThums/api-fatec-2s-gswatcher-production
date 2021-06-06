@@ -1,10 +1,10 @@
 <template>
-  <nav>
+  <nav v-if="!['login', 'register', 'forgotpass'].includes($route.name)">
     <v-app-bar dense app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <router-link class="font-weight-dark text-decoration-none" to="/"
-          >GSWatcher
+          ><div id="logo-name">GSWATCHER</div>
         </router-link>
 
         <!--<span class="font-weight-light text-uppercase grey--text"> - Gerenciador de Projetos</span>-->
@@ -13,11 +13,11 @@
       <!-- <v-btn icon>
                 <v-icon>mdi-magnify</v-icon>
             </v-btn> -->
-      <v-btn to="/perfil" flat>
-        <!-- <router-link to="/perfil"></router-link> -->
-        <v-icon>mdi-account-circle</v-icon>
-        <!-- Por enquanto está com o ícone errado, buscar validação de usuário para alterar dinâmicamente ícone -->
-      </v-btn>
+      <!-- <v-btn to="/perfil" flat> ******* TEMPORARIAMENTE ******* -->
+      <!-- <router-link to="/perfil"></router-link> -->
+      <!-- <v-icon>mdi-account-circle</v-icon> ******* TEMPORARIAMENTE ******* -->
+      <!-- Por enquanto está com o ícone errado, buscar validação de usuário para alterar dinâmicamente ícone -->
+      <!-- </v-btn> ******* TEMPORARIAMENTE ******* -->
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" color="grey darken-3">
@@ -124,6 +124,7 @@ export default {
         { icon: "mdi-file-upload", text: "Upload", route: "/upload" },
         // { icon: 'mdi-face', text: 'Time', route: '/time' },
       ],
+      token: localStorage.getItem("@gswatcher:token"),
     };
   },
   methods: {
@@ -134,4 +135,13 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+
+#logo-name {
+  font-family: "Allerta Stencil", sans-serif;
+  font-size: larger;
+}
+</style>
 

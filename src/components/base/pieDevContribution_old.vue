@@ -1,6 +1,5 @@
 <template>
   <div class="chart">
-    <div class="chart-wrapper" id="chart">
       <apexchart
         class="my-2"
         type="pie"
@@ -9,7 +8,6 @@
         :options="chartOptions"
         :series="series"
       ></apexchart>
-    </div>
   </div>
 </template>
 
