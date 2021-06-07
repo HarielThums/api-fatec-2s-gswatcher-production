@@ -1,5 +1,5 @@
 # api-fatec-2s-gswatcher-production
 
-Repositório de estudo para projeto GSWatcher.
+Repositório usado para Deploy do projeto GSWatcher.
 
 Para acessar o repositório raiz, [Clique aqui](https://github.com/vinicius-hso/api-fatec-2s-gswatcher)
