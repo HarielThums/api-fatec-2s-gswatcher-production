@@ -1,4 +1,4 @@
-# api-fatec-2s-gswatcher-study
+# api-fatec-2s-gswatcher-production
 
 Repositório de estudo para projeto GSWatcher.
 
