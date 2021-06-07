@@ -2,4 +2,4 @@
 
 Repositório usado para Deploy do projeto GSWatcher.
 
-Para acessar o repositório raiz, [Clique aqui](https://github.com/vinicius-hso/api-fatec-2s-gswatcher)
+Para acessar o repositório raiz e conhecer mais sobre o projeto, [Clique aqui](https://github.com/vinicius-hso/api-fatec-2s-gswatcher)
