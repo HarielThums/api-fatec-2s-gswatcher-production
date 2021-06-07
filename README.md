@@ -5,9 +5,10 @@ Repositório usado para Deploy do projeto GSWatcher.
 Para acessar o repositório raiz e conhecer mais sobre o projeto, [clique aqui.](https://github.com/vinicius-hso/api-fatec-2s-gswatcher)
 
 ## 
-## 🏢 Hospedagem/Deploy no Heroku
+## 
 
-###
+## 🏢 Hospedagem/Deploy no Heroku
+## 
 
 ### DASHBOARD
 
@@ -17,7 +18,7 @@ Acesse a aplicação em produção através do link abaixo:
 
 * *Para verificar o código do deploy do Dashboard, acesse a branch "[Front-End](https://github.com/HarielThums/api-fatec-2s-gswatcher-production/tree/Front-End)"
 
-### 
+##  
 
 ### API
 
@@ -27,7 +28,7 @@ A API do projeto pode ser acessada pelos seguinte links:
 
 * *Para verificar o código do deploy da API, acesse a branch "[Back-End](https://github.com/HarielThums/api-fatec-2s-gswatcher-production/tree/Back-End)"
 
-###
+## 
 
 #### Importante ressaltar que os dados da empresa somente serão visíveis, via validação por token.
 
