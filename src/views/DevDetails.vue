@@ -211,9 +211,10 @@ export default {
             };
             menor = menor.toLocaleDateString(undefined, options);
           }
+          console.log(elem)
+          id = elem.projeto_id;
         }
-        console.log(elem)
-        id = elem.projeto_id;
+        
       });
       return {
         id: id,
