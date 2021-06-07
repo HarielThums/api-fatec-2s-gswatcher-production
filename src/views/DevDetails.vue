@@ -145,6 +145,7 @@ export default {
   },
   methods: {
     treatCycle(info, projs) {
+      this.info = {}
       let devProjTasks = [];
       let devProjs = this.devProjectsSet(projs);
 
