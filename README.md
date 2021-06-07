@@ -11,7 +11,7 @@ Para acessar o repositório raiz e conhecer mais sobre o projeto, [clique aqui.]
 
 ### DASHBOARD
 
-Acesse a aplicação em produção através do link abaixo:
+Acesse a aplicação em produção através dos links abaixo:
 
 * *🔗 [https://gswatcher.herokuapp.com/](https://gswatcher.herokuapp.com/)
 
@@ -21,7 +21,7 @@ Acesse a aplicação em produção através do link abaixo:
 
 ### API
 
-A API do projeto pode ser acessada pelos seguinte links:
+Acesse a API em ambiente de produção através dos seguintes links:
 
 * *⚙️ [https://api-gswatcher.herokuapp.com/](https://api-gswatcher.herokuapp.com/)
 
@@ -33,7 +33,7 @@ A API do projeto pode ser acessada pelos seguinte links:
 
 Tendo em vista a sensibilidade dos dados, esses poderão apenas ser acessados via validação por token, por exemplo, a seguinte rota da API:
 [https://api-gswatcher.herokuapp.com/api/projetos](https://api-gswatcher.herokuapp.com/api/projetos)
-apresenta todos os projetos inseridos no banco de dados, mas esses só podem ser acessados através do token adquirido por um usuário ativo.
+, apresenta todos os projetos inseridos no banco de dados, mas esses só podem ser acessados através do token adquirido por um usuário ativo.
 Garantindo assim, a segurança e privacidade das informações contidas na aplicação.
 
 
