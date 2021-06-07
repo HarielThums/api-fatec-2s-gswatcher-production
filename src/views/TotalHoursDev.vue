@@ -53,6 +53,9 @@ export default {
       devId: this.$route.params.dev_id,
       projId: this.$route.params.id,
     });
+    if (localStorage.getItem("@gswatcher:token") == null) {
+     this.$router.push("/login");
+   }
   },
 };
 </script>

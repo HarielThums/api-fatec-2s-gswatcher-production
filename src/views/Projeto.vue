@@ -101,7 +101,7 @@ export default {
    mounted() {
     var id = parseInt(this.$route.params.id);
     axios
-      .get("http://127.0.0.1:3000/api/teste3/" + id, { crossDomain: true })
+      .get("https://api-gswatcher.herokuapp.com/api/teste3/" + id, { crossDomain: true })
       .then((response) => {
         this.projeto = response.data;
         console.log(this.projeto);
@@ -110,6 +110,10 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+    //*** TENTATIVA DE LIMITAR O ACESSO BASEADO NA TOKEN ***
+    if (localStorage.getItem("@gswatcher:token") == null) {
+       this.$router.push("/login");
+     }
   },
 };
 </script>

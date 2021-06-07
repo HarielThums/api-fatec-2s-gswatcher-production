@@ -69,6 +69,9 @@
                             v-on:change="handleFileUpload()"
                           />
                         </label>
+                        <div v-if="loading">
+                          <Spinner/>
+                        </div>
                       </div>
                     </div>
                   </v-container>
@@ -81,6 +84,7 @@
                   <v-btn color="cyan darken-4" text @click="submitFile()">
                     Save
                   </v-btn>
+                  
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -113,19 +117,18 @@
 
 //import uploadButtons from "@/components/base/uploadButtons";
 import DataService from "../services/DataService";
+import Spinner from '../components/base/Spinner.vue'
 
 //objetivo final é transformar esse caminho em um modal
 
 export default {
   name: "Upload",
-  components: {
-    // uploadButtons,
-  },
+  components: {Spinner},
   data() {
     return {
       dialog: false,
       file: "",
-      message_upload: "",
+      loading: false,
       message_submit: "",
       error: "",
       submitted_error: false,
@@ -139,9 +142,11 @@ export default {
       try {
         let formData = new FormData();
         formData.append("file", this.file);
+        this.loading = true;
         await DataService.create(formData);
         this.message_submit = "The file was uploaded successfully";
         this.submitted = true;
+        this.loading = false;
         this.submitted2 = true;
       } catch (error) {
         this.error = "Error has occurred, try again latter";
@@ -154,6 +159,12 @@ export default {
       this.file = this.$refs.file.files[0];
     },
   },
+  mounted() {
+    //*** TENTATIVA DE LIMITAR O ACESSO BASEADO NA TOKEN ***
+    if (localStorage.getItem("@gswatcher:token") == null) {
+       this.$router.push("/login");
+     }
+  }
 };
 </script>
 

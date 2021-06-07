@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="!['login', 'register', 'forgotpass'].includes($route.name)">
+  <nav v-if="!['login', 'register', 'forgotpass', 'reset'].includes($route.name)">
     <v-app-bar dense app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
@@ -13,11 +13,10 @@
       <!-- <v-btn icon>
                 <v-icon>mdi-magnify</v-icon>
             </v-btn> -->
-      <!-- <v-btn to="/perfil" flat> ******* TEMPORARIAMENTE ******* -->
-      <!-- <router-link to="/perfil"></router-link> -->
-      <!-- <v-icon>mdi-account-circle</v-icon> ******* TEMPORARIAMENTE ******* -->
-      <!-- Por enquanto está com o ícone errado, buscar validação de usuário para alterar dinâmicamente ícone -->
-      <!-- </v-btn> ******* TEMPORARIAMENTE ******* -->
+            
+      <v-btn class="mx-2" fab small dark color="primary" v-on:click="logout()">
+        <v-icon dark> mdi-logout-variant</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" color="grey darken-3">
@@ -131,6 +130,10 @@ export default {
     handleFileUpload() {
       this.dialog = false;
       this.file = this.$refs.file.files[0];
+    },
+    logout() {
+      localStorage.clear();
+      this.$router.push("/login");
     },
   },
 };
