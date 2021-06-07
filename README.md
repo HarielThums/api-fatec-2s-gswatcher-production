@@ -8,7 +8,6 @@ Para acessar o repositório raiz e conhecer mais sobre o projeto, [clique aqui.]
 ## 
 
 ## 🏢 Hospedagem/Deploy no Heroku
-## 
 
 ### DASHBOARD
 
