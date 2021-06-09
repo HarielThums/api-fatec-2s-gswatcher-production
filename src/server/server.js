@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // database start - Initial dataset
 const main = require('../models/upload_data')
-main(dados)
+// main(dados)
 
 // Rotas da API;
 const AuthRoute = require('../routes/auth_routes')
